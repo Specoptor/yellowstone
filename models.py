@@ -1,6 +1,33 @@
 from bs4 import BeautifulSoup
 
 
+def extract_key_value_pairs(soup_objects):
+    data = {}
+    for obj in soup_objects:
+        if len(obj.contents) == 2 and \
+                obj.contents[0].attrs['class'] == ['key'] and \
+                obj.contents[1].attrs['class'] == ['value']:
+            key = obj.find('span', class_='key').text.strip(':')
+            value = obj.find('span', class_='value').text
+            data[key] = value
+    return data
+
+
+def decode_html(encoded_string):
+    """
+    decode the raw html string received from http response to a clean html string.
+    :param encoded_string: raw html string
+    :return: clean html string
+    """
+    # Decoding unicode escape sequences
+    decoded_string = bytes(encoded_string, "utf-8").decode("unicode_escape")
+
+    # Replacing control characters
+    clean_html = decoded_string.replace("\r", "").replace("\n", "").replace("\t", "")
+
+    return clean_html
+
+
 class Property:
     """
     Represents a property with various attributes extracted from multiple types of HTML formatted strings.
@@ -51,7 +78,8 @@ class Property:
 
         :param html_string: New HTML string for parsing.
         """
-        self.soup = BeautifulSoup(html_string, 'html.parser')
+        clean_html = decode_html(html_string)
+        self.soup = BeautifulSoup(clean_html, 'html.parser')
 
     def _extract_data_by_key(self, key):
         """
@@ -153,17 +181,11 @@ class Property:
         :param html_string: HTML string containing commercial building details.
         """
         self.update_html(html_string)
-        building_rows = self.soup.find_all('tr')[1:]
+        building_rows = self.soup.find_all('tr')
         self.building_details = []
         for row in building_rows:
             columns = row.find_all('td')
-            building_info = {
-                "Building Number": columns[0].text.strip(),
-                "Building Name": columns[1].text.strip(),
-                "Structure Type": columns[2].text.strip(),
-                "Units/Bldg": columns[3].text.strip(),
-                "YearBuilt": columns[4].text.strip()
-            }
+            building_info = extract_key_value_pairs(columns)
             self.building_details.append(building_info)
 
     def update_other_building_data(self, html_string):
@@ -177,13 +199,7 @@ class Property:
         self.other_building_details = []
         for row in building_rows:
             columns = row.find_all('td')
-            other_building_info = {
-                "Type": columns[0].text.strip(),
-                "Description": columns[1].text.strip(),
-                "Quantity": columns[2].text.strip(),
-                "Year Built": columns[3].text.strip(),
-                "Grade": columns[4].text.strip()
-            }
+            other_building_info = extract_key_value_pairs(columns)
             self.other_building_details.append(other_building_info)
 
     def update_market_land_data(self, html_string):
@@ -197,9 +213,17 @@ class Property:
         self.market_land_details = []
         for row in land_rows:
             columns = row.find_all('td')
-            land_info = {
-                "Method": columns[0].text.strip(),
-                "Type": columns[1].text.strip(),
-                "Square Feet": columns[2].text.strip()
-            }
+            land_info = extract_key_value_pairs(columns)
             self.market_land_details.append(land_info)
+
+    def json(self):
+        """
+        Returns a dictionary representation of the Property object. It excludes the soup attribute.
+
+        :return: a dictionary representation of the Property object.
+        """
+        attributes = {}
+        for key, value in self.__dict__.items():
+            if key != "soup":
+                attributes[key] = value
+        return attributes
