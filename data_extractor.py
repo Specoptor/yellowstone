@@ -82,6 +82,18 @@ class CadastralAPI:
         """
         url = f"{BASE_URL}/search/searchbysubdivision?subdivision={subdivision_name}&countyid={county_id}"
         response = requests.get(url)
+
+        # the code below is to handle the case when the API returns an empty response.
+        # For some reason the response is empty sometimes, so we try to fetch the data again.
+        # If the response is still empty after 5 tries, we raise an exception.
+        if response.content == b'':
+            for _ in range(5):
+                response = requests.get(url)
+                if response.content != b'':
+                    break
+            else:
+                raise Exception("API call failed")
+
         decoded_response = response.content.decode("utf-8")
         formatted_response = clean_json_string(decoded_response)
         return json.loads(formatted_response)
@@ -369,7 +381,6 @@ def populate_directory_for_subdivision(county_id, county_name, subdivision_name)
     :return: None
     """
     county = County(county_id, county_name)
-    county_directory = os.path.join("data", "counties", county_name)
     subdivision = Subdivision(name=subdivision_name, county_id=county.id, county_name=county.name)
     county_directory = os.path.join("data", "counties", county_name)
 
@@ -424,4 +435,5 @@ class PropertyExtractor:
 
 if __name__ == "__main__":
     # populate_directory_structure()
-    populate_directory_for_county("03", "YELLOWSTONE")
+    # populate_directory_for_county("03", "YELLOWSTONE")
+    populate_directory_for_subdivision("03", "YELLOWSTONE", "YELLOWSTONE ADD")
