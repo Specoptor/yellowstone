@@ -1,62 +1,35 @@
 import json
 
-import requests
-from requests import RequestException
-
-from data_extractor import County, Subdivision, PropertyHTML, PropertyExtractor
+from data_extractor import Subdivision, PropertyHTML, PropertyExtractor
 from models import Property
 
 county_name = "YELLOWSTONE"
 county_id = "03"
-subdivision_name = "THORN TREE SUB (10)"
+subdivision_name = "CASPIAN POINTE ESTATES (10)"
 
-def make_request_with_retry(url):
-    MAX_RETRIES = 5
-    for _ in range(MAX_RETRIES):
-        try:
-            response = requests.get(url, timeout=300)
-            response.raise_for_status()  # Raise an HTTPError for bad responses
-            if response.content != b'':
-                return response
-        except requests.exceptions.HTTPError as http_err:
-            print(f"HTTP error occurred: {http_err}")
-        except requests.exceptions.RequestException as req_err:
-            print(f"Request error occurred: {req_err}")
-        except Exception as e:
-            print(f"An unexpected error occurred: {e}")
-
-    raise Exception(f"API call failed after {MAX_RETRIES} retries")
 
 if __name__ == '__main__':
-    # Create a County object
-    county = County(name=county_name, id=county_id)
-    try:
-        county.fetch_subdivisions()
-    except RequestException as e:
-        print(f"Error fetching subdivisions for {county_name}: {e}")
-
-
     # Create a Subdivision object
     subdivision = Subdivision(name=subdivision_name, county_id=county_id, county_name=county_name)
-    try:
-        subdivision.fetch_properties()
-    except RequestException as e:
-        print(f"Error fetching properties for {subdivision_name} in {county_name}: {e}")
-
+    subdivision.fetch_properties()
 
     property_extractor = PropertyExtractor(subdivision.properties_html)
     properties = property_extractor.extract_properties()
     properties_data_list = []
-
+    properties_timer_list = []
     for prop in properties:
-        geocode = prop['Geocode']
-        property_html_object = PropertyHTML(geocode)
-        try:
-            property_html_object.fetch_all_data()
-        except RequestException as e:
-            print(f"Error fetching data for property with geocode {geocode}: {e}")
-            continue  # Skip this property and move to the next one
-
+        property_html_object = PropertyHTML(prop['Geocode'])
+        property_html_object.fetch_all_data()
+        properties_timer_list.append({"Geocode": prop['Geocode'],
+                                      "summary": property_html_object.time_taken_summary,
+                                      "commercial": property_html_object.time_taken_commercial,
+                                      "owner": property_html_object.time_taken_owner,
+                                      "appraisal": property_html_object.time_taken_appraisal,
+                                      "market_land": property_html_object.time_taken_market_land,
+                                      "other_building": property_html_object.time_taken_other_building,
+                                      "dwelling": property_html_object.time_taken_dwelling,
+                                      "agricultural": property_html_object.time_taken_agricultural,
+                                      })
         property = Property()
         property.update_summary_data(property_html_object.summary_data)
         property.update_commercial_data(property_html_object.commercial_data)
@@ -68,3 +41,7 @@ if __name__ == '__main__':
 
     with open('samples.json', 'w') as f:
         json.dump(properties_data_list, f, indent=4)
+
+    with open('samples_timer.json', 'w') as f:
+        json.dump(properties_timer_list, f, indent=4)
+
