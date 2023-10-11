@@ -156,8 +156,9 @@ class Property:
         self.land_value = int(current_year_data[1].text)
         self.building_value = int(current_year_data[2].text)
         total_value_2023 = int(current_year_data[3].text)
-        total_value_2022 = int(rows[1].find_all('td')[3].text)
-        self.yoY_difference = total_value_2023 - total_value_2022
+        if len(rows) > 1:
+            total_value_2022 = int(rows[1].find_all('td')[3].text)
+            self.yoY_difference = total_value_2023 - total_value_2022
 
     def update_summary_data(self, html_string):
         """
