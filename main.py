@@ -20,16 +20,7 @@ if __name__ == '__main__':
     for prop in properties:
         property_html_object = PropertyHTML(prop['Geocode'])
         property_html_object.fetch_all_data()
-        properties_timer_list.append({"Geocode": prop['Geocode'],
-                                      "summary": property_html_object.time_taken_summary,
-                                      "commercial": property_html_object.time_taken_commercial,
-                                      "owner": property_html_object.time_taken_owner,
-                                      "appraisal": property_html_object.time_taken_appraisal,
-                                      "market_land": property_html_object.time_taken_market_land,
-                                      "other_building": property_html_object.time_taken_other_building,
-                                      "dwelling": property_html_object.time_taken_dwelling,
-                                      "agricultural": property_html_object.time_taken_agricultural,
-                                      })
+        properties_timer_list.append(property_html_object.time_taken())
         property = Property()
         property.update_summary_data(property_html_object.summary_data)
         property.update_commercial_data(property_html_object.commercial_data)
