@@ -15,40 +15,6 @@ caller = ApiCaller()
 BASE_URL = "https://svc.mt.gov/msl/legacycadastralapi"
 
 
-def directory_has_content(directory):
-    """
-    Check if a directory exists and has content.
-
-    :param directory: Path to the directory.
-    :return: True if the directory exists and contains files, otherwise False.
-    """
-    return os.path.exists(directory) and bool(os.listdir(directory))
-
-
-def get_existing_subdivisions(county_directory):
-    """
-    Get a list of existing subdivisions for a given county from the subdivision_list.json file.
-
-    :param county_directory: Path to the county directory.
-    :return: List of existing subdivisions, or an empty list if the file doesn't exist.
-    """
-    subdivisions_filepath = os.path.join(county_directory, "subdivision_list.json")
-    if os.path.exists(subdivisions_filepath):
-        with open(subdivisions_filepath, 'r') as file:
-            return json.load(file)
-    return []
-
-
-def clean_json_string(data_str):
-    """
-    Replace invalid escape sequences in a JSON string.
-
-    :param data_str: The JSON string to clean.
-    :return: Cleaned JSON string.
-    """
-    return re.sub(r'\\(?![/u"bfnrt])', r'\\\\', data_str)
-
-
 class CadastralAPI:
     """
     Utility class to handle API calls to the Cadastral API.
@@ -86,6 +52,16 @@ class CadastralAPI:
         :param county_id: ID of the county.
         :return: List of properties for the specified subdivision and county.
         """
+
+        def clean_json_string(data_str):
+            """
+            Replace invalid escape sequences in a JSON string.
+
+            :param data_str: The JSON string to clean.
+            :return: Cleaned JSON string.
+            """
+            return re.sub(r'\\(?![/u"bfnrt])', r'\\\\', data_str)
+
         url = f"{BASE_URL}/search/searchbysubdivision?subdivision={subdivision_name}&countyid={county_id}"
         response = caller.get(url)
 
@@ -103,17 +79,6 @@ class CadastralAPI:
         decoded_response = response.content.decode("utf-8")
         formatted_response = clean_json_string(decoded_response)
         return json.loads(formatted_response)
-
-
-def save_to_json(data, filepath):
-    """
-    Utility function to save data as JSON to the specified filepath.
-
-    :param data: Data to be saved.
-    :param filepath: Path where the data should be saved.
-    """
-    with open(filepath, 'w') as file:
-        json.dump(data, file, indent=4)
 
 
 class Subdivision:
@@ -366,6 +331,20 @@ def populate_directory_structure():
 
     :return: None
     """
+
+    def get_existing_subdivisions(county_directory):
+        """
+        Get a list of existing subdivisions for a given county from the subdivision_list.json file.
+
+        :param county_directory: Path to the county directory.
+        :return: List of existing subdivisions, or an empty list if the file doesn't exist.
+        """
+        subdivisions_filepath = os.path.join(county_directory, "subdivision_list.json")
+        if os.path.exists(subdivisions_filepath):
+            with open(subdivisions_filepath, 'r') as file:
+                return json.load(file)
+        return []
+
     # Initialize the CadastralAPI
     api = CadastralAPI()
 
@@ -425,6 +404,17 @@ def populate_directory_for_subdivision(county_id, county_name, subdivision_name)
     subdivision.fetch_properties()
     subdivision.save_properties()
     subdivision.extract_and_save_properties(county_directory)
+
+
+def save_to_json(data, filepath):
+    """
+    Utility function to save data as JSON to the specified filepath.
+
+    :param data: Data to be saved.
+    :param filepath: Path where the data should be saved.
+    """
+    with open(filepath, 'w') as file:
+        json.dump(data, file, indent=4)
 
 
 class PropertyExtractor:
