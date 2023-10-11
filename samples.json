@@ -1,0 +1,431 @@
+[
+    {
+        "geocode": "03-0927-17-3-17-11-7003",
+        "legal_description": "CASPIAN POINTE ESTATES (10), S17, T01 S, R26 E, UNIT 3, 19% COMMON AREA INTEREST, LOC @ LT 6 BLK 5 RIVERFRONT POINTE SUB  (07) 27110 SQ FT   (OLD #D1902,A31299)",
+        "total_market_land": "0.000",
+        "last_modified": "10/6/2023 1:55:41 AM",
+        "property_address": null,
+        "sub_category": "Residential Property",
+        "subdivision": "CASPIAN POINTE ESTATES (10)",
+        "owners": [
+            {
+                "": "1528 WIND RIVER LN # 3",
+                "Ownership %:": "100",
+                "Primary Owner:": "\"Yes\"",
+                "Interest Type:": "Fee Simple",
+                "Last Modified:": "6/19/2014 10:28:02 AM"
+            }
+        ],
+        "land_value": 19171,
+        "building_value": 225629,
+        "yoY_difference": 35900,
+        "building_details": [],
+        "other_building_details": [
+            {
+                "Type": "Residential",
+                "Description": "RPA2 - Concrete"
+            },
+            {
+                "Quantity": "1",
+                "Year Built": "2009",
+                "Grade": "A"
+            },
+            {
+                "Condition": "",
+                "Functional": "",
+                "Class Code": "3501"
+            },
+            {},
+            {
+                "Width/Diameter": "8",
+                "Length": "10",
+                "Size/Area": " \u00a0"
+            },
+            {
+                "Height": "\u00a0",
+                "Bushels": " \u00a0",
+                "Circumference": " \u00a0"
+            },
+            {},
+            {},
+            {
+                "Type": "Residential",
+                "Description": "RPA2 - Concrete"
+            },
+            {
+                "Quantity": "1",
+                "Year Built": "2009",
+                "Grade": "A"
+            },
+            {
+                "Condition": "",
+                "Functional": "",
+                "Class Code": "3501"
+            },
+            {},
+            {
+                "Width/Diameter": "20",
+                "Length": "30",
+                "Size/Area": " \u00a0"
+            },
+            {
+                "Height": "\u00a0",
+                "Bushels": " \u00a0",
+                "Circumference": " \u00a0"
+            }
+        ],
+        "market_land_details": []
+    },
+    {
+        "geocode": "03-0927-17-3-17-11-7004",
+        "legal_description": "CASPIAN POINTE ESTATES (10), S17, T01 S, R26 E, UNIT 4, 19% COMMON AREA INTEREST, LOC @ LT 6 BLK 5 RIVERFRONT POINTE SUB  (07) 27110 SQ FT   (OLD #D1902,A31299)",
+        "total_market_land": "0.000",
+        "last_modified": "10/6/2023 1:55:41 AM",
+        "property_address": null,
+        "sub_category": "Residential Property",
+        "subdivision": "CASPIAN POINTE ESTATES (10)",
+        "owners": [
+            {
+                "": "1902 FRONT ST",
+                "Ownership %:": "100",
+                "Primary Owner:": "\"Yes\"",
+                "Interest Type:": "Joint Tenant w/Right of Survivorship",
+                "Last Modified:": "2/19/2019 4:55:31 PM"
+            }
+        ],
+        "land_value": 19171,
+        "building_value": 225429,
+        "yoY_difference": 35900,
+        "building_details": [],
+        "other_building_details": [
+            {
+                "Type": "Residential",
+                "Description": "RPA2 - Concrete"
+            },
+            {
+                "Quantity": "1",
+                "Year Built": "2009",
+                "Grade": "A"
+            },
+            {
+                "Condition": "",
+                "Functional": "",
+                "Class Code": "3501"
+            },
+            {},
+            {
+                "Width/Diameter": "8",
+                "Length": "10",
+                "Size/Area": " \u00a0"
+            },
+            {
+                "Height": "\u00a0",
+                "Bushels": " \u00a0",
+                "Circumference": " \u00a0"
+            },
+            {},
+            {},
+            {
+                "Type": "Residential",
+                "Description": "RPA2 - Concrete"
+            },
+            {
+                "Quantity": "1",
+                "Year Built": "2009",
+                "Grade": "A"
+            },
+            {
+                "Condition": "",
+                "Functional": "",
+                "Class Code": "3501"
+            },
+            {},
+            {
+                "Width/Diameter": "20",
+                "Length": "26",
+                "Size/Area": " \u00a0"
+            },
+            {
+                "Height": "\u00a0",
+                "Bushels": " \u00a0",
+                "Circumference": " \u00a0"
+            }
+        ],
+        "market_land_details": []
+    },
+    {
+        "geocode": "03-0927-17-3-17-11-7002",
+        "legal_description": "CASPIAN POINTE ESTATES (10), S17, T01 S, R26 E, UNIT 2, 19% COMMON AREA INTEREST, LOC @ LT 6 BLK 5 RIVERFRONT POINTE SUB  (07) 27110 SQ FT   (OLD #D1902,A31299)",
+        "total_market_land": "0.000",
+        "last_modified": "10/6/2023 1:55:41 AM",
+        "property_address": null,
+        "sub_category": "Residential Property",
+        "subdivision": "CASPIAN POINTE ESTATES (10)",
+        "owners": [
+            {
+                "": "1530 WIND RIVER LN",
+                "Ownership %:": "100",
+                "Primary Owner:": "\"Yes\"",
+                "Interest Type:": "Fee Simple",
+                "Last Modified:": "10/27/2015 2:43:47 PM"
+            }
+        ],
+        "land_value": 19171,
+        "building_value": 226229,
+        "yoY_difference": 35900,
+        "building_details": [],
+        "other_building_details": [
+            {
+                "Type": "Residential",
+                "Description": "RPA2 - Concrete"
+            },
+            {
+                "Quantity": "1",
+                "Year Built": "2009",
+                "Grade": "A"
+            },
+            {
+                "Condition": "",
+                "Functional": "",
+                "Class Code": "3501"
+            },
+            {},
+            {
+                "Width/Diameter": "8",
+                "Length": "10",
+                "Size/Area": " \u00a0"
+            },
+            {
+                "Height": "\u00a0",
+                "Bushels": " \u00a0",
+                "Circumference": " \u00a0"
+            },
+            {},
+            {},
+            {
+                "Type": "Residential",
+                "Description": "RPA2 - Concrete"
+            },
+            {
+                "Quantity": "1",
+                "Year Built": "2009",
+                "Grade": "A"
+            },
+            {
+                "Condition": "",
+                "Functional": "",
+                "Class Code": "3501"
+            },
+            {},
+            {
+                "Width/Diameter": "20",
+                "Length": "40",
+                "Size/Area": " \u00a0"
+            },
+            {
+                "Height": "\u00a0",
+                "Bushels": " \u00a0",
+                "Circumference": " \u00a0"
+            }
+        ],
+        "market_land_details": []
+    },
+    {
+        "geocode": "03-0927-17-3-17-11-7001",
+        "legal_description": "CASPIAN POINTE ESTATES (10), S17, T01 S, R26 E, UNIT 1, 22% COMMON AREA INTEREST, LOC @ LT 6 BLK 5 RIVERFRONT POINTE SUB  (07) 27110 SQ FT   (OLD #D1902,A31299)",
+        "total_market_land": "0.000",
+        "last_modified": "10/6/2023 1:55:41 AM",
+        "property_address": null,
+        "sub_category": "Residential Property",
+        "subdivision": "CASPIAN POINTE ESTATES (10)",
+        "owners": [
+            {
+                "": "5343 SACAGAWEA DR UNIT 1",
+                "Ownership %:": "100",
+                "Primary Owner:": "\"Yes\"",
+                "Interest Type:": "Tenants in Common",
+                "Last Modified:": "1/6/2020 2:06:22 PM"
+            }
+        ],
+        "land_value": 22198,
+        "building_value": 256602,
+        "yoY_difference": 46900,
+        "building_details": [],
+        "other_building_details": [
+            {
+                "Type": "Residential",
+                "Description": "RPA2 - Concrete"
+            },
+            {
+                "Quantity": "1",
+                "Year Built": "2009",
+                "Grade": "A"
+            },
+            {
+                "Condition": "",
+                "Functional": "",
+                "Class Code": "3501"
+            },
+            {},
+            {
+                "Width/Diameter": "8",
+                "Length": "10",
+                "Size/Area": " \u00a0"
+            },
+            {
+                "Height": "\u00a0",
+                "Bushels": " \u00a0",
+                "Circumference": " \u00a0"
+            },
+            {},
+            {},
+            {
+                "Type": "Residential",
+                "Description": "RPA2 - Concrete"
+            },
+            {
+                "Quantity": "1",
+                "Year Built": "2009",
+                "Grade": "A"
+            },
+            {
+                "Condition": "",
+                "Functional": "",
+                "Class Code": "3501"
+            },
+            {},
+            {
+                "Width/Diameter": "20",
+                "Length": "40",
+                "Size/Area": " \u00a0"
+            },
+            {
+                "Height": "\u00a0",
+                "Bushels": " \u00a0",
+                "Circumference": " \u00a0"
+            }
+        ],
+        "market_land_details": []
+    },
+    {
+        "geocode": "03-0927-17-3-17-11-7005",
+        "legal_description": "CASPIAN POINTE ESTATES (10), S17, T01 S, R26 E, UNIT 5, 21% COMMON AREA INTEREST, LOC @ LT 6 BLK 5 RIVERFRONT POINTE SUB  (07) 27110 SQ FT   (OLD #D1902,A31299)",
+        "total_market_land": "0.000",
+        "last_modified": "10/6/2023 1:55:41 AM",
+        "property_address": null,
+        "sub_category": "Residential Property",
+        "subdivision": "CASPIAN POINTE ESTATES (10)",
+        "owners": [
+            {
+                "": "PO BOX 2895",
+                "Ownership %:": "100",
+                "Primary Owner:": "\"Yes\"",
+                "Interest Type:": "Fee Simple",
+                "Last Modified:": "7/18/2022 10:34:21 AM"
+            }
+        ],
+        "land_value": 21189,
+        "building_value": 224811,
+        "yoY_difference": 34800,
+        "building_details": [],
+        "other_building_details": [
+            {
+                "Type": "Residential",
+                "Description": "RPA2 - Concrete"
+            },
+            {
+                "Quantity": "1",
+                "Year Built": "2009",
+                "Grade": "A"
+            },
+            {
+                "Condition": "",
+                "Functional": "",
+                "Class Code": "3501"
+            },
+            {},
+            {
+                "Width/Diameter": "8",
+                "Length": "10",
+                "Size/Area": " \u00a0"
+            },
+            {
+                "Height": "\u00a0",
+                "Bushels": " \u00a0",
+                "Circumference": " \u00a0"
+            },
+            {},
+            {},
+            {
+                "Type": "Residential",
+                "Description": "RPA2 - Concrete"
+            },
+            {
+                "Quantity": "1",
+                "Year Built": "2009",
+                "Grade": "A"
+            },
+            {
+                "Condition": "",
+                "Functional": "",
+                "Class Code": "3501"
+            },
+            {},
+            {
+                "Width/Diameter": "20",
+                "Length": "24",
+                "Size/Area": " \u00a0"
+            },
+            {
+                "Height": "\u00a0",
+                "Bushels": " \u00a0",
+                "Circumference": " \u00a0"
+            }
+        ],
+        "market_land_details": []
+    },
+    {
+        "geocode": "03-0927-17-3-17-11-7000",
+        "legal_description": "CASPIAN POINTE ESTATES (10), S17, T01 S, R26 E, MASTER CARD LOC @ LT 6 BLK 5 RIVERFRONT POINTE SUB  (07) 27110 SQ FT   (OLD #D1902,A31299)",
+        "total_market_land": "0.620",
+        "last_modified": "10/6/2023 1:55:41 AM",
+        "property_address": null,
+        "sub_category": "Condo/Townhouse Master",
+        "subdivision": "CASPIAN POINTE ESTATES (10)",
+        "owners": [
+            {
+                "": "1505 COTTONWOOD VALLEY CIR N",
+                "Ownership %:": "100",
+                "Primary Owner:": "\"Yes\"",
+                "Interest Type:": "Fee Simple",
+                "Last Modified:": "12/7/2009 10:07:26 AM"
+            }
+        ],
+        "land_value": 100902,
+        "building_value": 0,
+        "yoY_difference": -49383,
+        "building_details": [],
+        "other_building_details": [
+            {}
+        ],
+        "market_land_details": [
+            {
+                "Method": "Acre",
+                "Type": "Primary Site"
+            },
+            {
+                "Width": " \u00a0 ",
+                "Depth": " \u00a0 "
+            },
+            {
+                "Square Feet": "27,110",
+                "Acres": "0.62"
+            },
+            {},
+            {
+                "Class Code": "2201",
+                "Value": "100902"
+            }
+        ]
+    }
+]

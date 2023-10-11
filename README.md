@@ -143,3 +143,39 @@ The class extracts and stores the following attributes:
 - **BeautifulSoup4**: The class uses BeautifulSoup for parsing HTML data.
 
 ---
+## Main Execution - main.py
+
+The `main.py` script is a demonstration of how to utilize the data extraction tools provided in this project.
+
+1. **Initialization**: It sets constants for a county's name and ID, as well as a subdivision's name.
+2. **County Object Creation**: It creates a `County` object and fetches its subdivisions.
+3. **Subdivision Object Creation and Property Extraction**:
+    - A `Subdivision` object is initialized for a specified subdivision within a county.
+    - The subdivision object fetches properties associated with it.
+    - A `PropertyExtractor` object extracts property details.
+    - Each property's data is fetched, and a `Property` object is updated with that data.
+4. **Output**: Extracted property data is written to a JSON file named `samples.json`.
+
+To execute the script, simply run:
+
+```bash
+python main.py
+```
+
+---
+
+
+## Service Endpoints - svc_endpoints.py
+
+The `svc_endpoints.py` file provides a list of API endpoints for the Montana Cadastral API:
+
+1. **County List**: Fetches a list of all counties.
+2. **Subdivision List**: Fetches all subdivisions within a specific county.
+3. **Search by Subdivision**: Retrieves properties within a particular subdivision of a county.
+4. **Summary Data**: Gets summary data for a property using its geocode and year.
+5. **Owner Data**: Retrieves owner information for a property.
+   ... (continuing in similar fashion for other endpoints)
+
+These endpoints serve as the core communication links with the Montana Cadastral API and are utilized across various parts of the project.
+
+---
