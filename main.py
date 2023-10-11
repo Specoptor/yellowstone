@@ -22,12 +22,7 @@ if __name__ == '__main__':
         property_html_object.fetch_all_data()
         properties_timer_list.append(property_html_object.time_taken())
         property = Property()
-        property.update_summary_data(property_html_object.summary_data)
-        property.update_commercial_data(property_html_object.commercial_data)
-        property.update_market_land_data(property_html_object.market_land_data)
-        property.update_other_building_data(property_html_object.other_building_data)
-        property.update_appraisal_history(property_html_object.appraisal_data)
-        property.update_owner_details(property_html_object.owner_data)
+        property.populate_from_property_html_object(property_html_object)
         properties_data_list.append(property.json())
 
     with open('samples.json', 'w') as f:
