@@ -321,6 +321,22 @@ class PropertyHTML:
         self.fetch_commercial_data()
         self.fetch_agricultural_data()
 
+    def time_taken(self):
+        """
+        Return the time taken for each API call.
+        :return: a dictionary of time taken for each API call
+        """
+        return {"Geocode": self.geocode,
+                "summary": self.time_taken_summary,
+                "commercial": self.time_taken_commercial,
+                "owner": self.time_taken_owner,
+                "appraisal": self.time_taken_appraisal,
+                "market_land": self.time_taken_market_land,
+                "other_building": self.time_taken_other_building,
+                "dwelling": self.time_taken_dwelling,
+                "agricultural": self.time_taken_agricultural,
+                }
+
 
 def populate_directory_structure():
     """
