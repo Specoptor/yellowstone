@@ -1,0 +1,68 @@
+[
+    {
+        "Geocode": "03-0927-17-3-17-11-7003",
+        "summary": 1.89,
+        "commercial": 1.16,
+        "owner": 2.36,
+        "appraisal": 2.25,
+        "market_land": 3.46,
+        "other_building": 1.07,
+        "dwelling": 2.62,
+        "agricultural": 3.66
+    },
+    {
+        "Geocode": "03-0927-17-3-17-11-7004",
+        "summary": 4.42,
+        "commercial": 3.08,
+        "owner": 4.08,
+        "appraisal": 5.99,
+        "market_land": 7.98,
+        "other_building": 1.85,
+        "dwelling": 5.52,
+        "agricultural": 3.52
+    },
+    {
+        "Geocode": "03-0927-17-3-17-11-7002",
+        "summary": 6.32,
+        "commercial": 10.7,
+        "owner": 4.15,
+        "appraisal": 3.49,
+        "market_land": 2.59,
+        "other_building": 7.33,
+        "dwelling": 5.59,
+        "agricultural": 5.77
+    },
+    {
+        "Geocode": "03-0927-17-3-17-11-7001",
+        "summary": 48.0,
+        "commercial": 12.18,
+        "owner": 13.22,
+        "appraisal": 34.0,
+        "market_land": 48.85,
+        "other_building": 18.52,
+        "dwelling": 54.01,
+        "agricultural": 19.8
+    },
+    {
+        "Geocode": "03-0927-17-3-17-11-7005",
+        "summary": 30.27,
+        "commercial": 4.22,
+        "owner": 9.54,
+        "appraisal": 7.65,
+        "market_land": 4.44,
+        "other_building": 0.97,
+        "dwelling": 4.62,
+        "agricultural": 3.28
+    },
+    {
+        "Geocode": "03-0927-17-3-17-11-7000",
+        "summary": 7.91,
+        "commercial": 1.01,
+        "owner": 2.38,
+        "appraisal": 0.96,
+        "market_land": 1.09,
+        "other_building": 0.96,
+        "dwelling": 1.88,
+        "agricultural": 1.0
+    }
+]

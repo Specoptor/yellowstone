@@ -1,3 +1,5 @@
+import time
+
 import requests
 import os
 
@@ -5,6 +7,10 @@ import re
 import json
 
 from bs4 import BeautifulSoup
+
+from api_caller import ApiCaller
+
+caller = ApiCaller()
 
 BASE_URL = "https://svc.mt.gov/msl/legacycadastralapi"
 
@@ -56,7 +62,7 @@ class CadastralAPI:
         :return: List of counties from the API.
         """
         url = f"{BASE_URL}/search/getcountylist"
-        response = requests.get(url)
+        response = caller.get(url)
         return response.json()
 
     @staticmethod
@@ -68,7 +74,7 @@ class CadastralAPI:
         :return: List of subdivisions for the specified county.
         """
         url = f"{BASE_URL}/search/getsubdivisionlist?countyid={county_id}"
-        response = requests.get(url)
+        response = caller.get(url)
         return response.json()
 
     @staticmethod
@@ -81,14 +87,14 @@ class CadastralAPI:
         :return: List of properties for the specified subdivision and county.
         """
         url = f"{BASE_URL}/search/searchbysubdivision?subdivision={subdivision_name}&countyid={county_id}"
-        response = requests.get(url)
+        response = caller.get(url)
 
         # the code below is to handle the case when the API returns an empty response.
         # For some reason the response is empty sometimes, so we try to fetch the data again.
         # If the response is still empty after 5 tries, we raise an exception.
         if response.content == b'':
             for _ in range(5):
-                response = requests.get(url)
+                response = caller.get(url)
                 if response.content != b'':
                     break
             else:
@@ -222,6 +228,14 @@ class PropertyHTML:
         self.other_building_data = None
         self.commercial_data = None
         self.agricultural_data = None
+        self.time_taken_summary = None
+        self.time_taken_owner = None
+        self.time_taken_appraisal = None
+        self.time_taken_market_land = None
+        self.time_taken_dwelling = None
+        self.time_taken_other_building = None
+        self.time_taken_commercial = None
+        self.time_taken_agricultural = None
 
     def fetch_summary_data(self):
         """
@@ -230,7 +244,10 @@ class PropertyHTML:
         :return: None
         """
         url = f"{BASE_URL}/summary/getsummarydata?geocode={self.geocode}&year={self.year}"
-        response = requests.get(url)
+        start = time.time()
+        response = caller.get(url)
+        elapsed = round(time.time() - start, 2)
+        self.time_taken_summary = elapsed
         self.summary_data = response.content.decode('utf-8')
 
     def fetch_owner_data(self):
@@ -240,7 +257,10 @@ class PropertyHTML:
         :return: None
         """
         url = f"{BASE_URL}/owner/getownerdata?geocode={self.geocode}&year={self.year}"
-        response = requests.get(url)
+        start = time.time()
+        response = caller.get(url)
+        elapsed = round(time.time() - start, 2)
+        self.time_taken_owner = elapsed
         self.owner_data = response.content.decode('utf-8')
 
     def fetch_appraisal_data(self):
@@ -250,7 +270,10 @@ class PropertyHTML:
         :return: None
         """
         url = f"{BASE_URL}/appraisal/getappraisaldata?geocode={self.geocode}&year={self.year}"
-        response = requests.get(url)
+        start = time.time()
+        response = caller.get(url)
+        elapsed = round(time.time() - start, 2)
+        self.time_taken_appraisal = elapsed
         self.appraisal_data = response.content.decode('utf-8')
 
     def fetch_market_land_data(self):
@@ -260,7 +283,10 @@ class PropertyHTML:
         :return: None
         """
         url = f"{BASE_URL}/marketland/getmarketlanddata?geocode={self.geocode}&year={self.year}"
-        response = requests.get(url)
+        start = time.time()
+        response = caller.get(url)
+        elapsed = round(time.time() - start, 2)
+        self.time_taken_market_land = elapsed
         self.market_land_data = response.content.decode('utf-8')
 
     def fetch_dwelling_data(self):
@@ -270,7 +296,10 @@ class PropertyHTML:
         :return: None
         """
         url = f"{BASE_URL}/dwelling/getdwellingdata?geocode={self.geocode}&year={self.year}"
-        response = requests.get(url)
+        start = time.time()
+        response = caller.get(url)
+        elapsed = round(time.time() - start, 2)
+        self.time_taken_dwelling = elapsed
         self.dwelling_data = response.content.decode('utf-8')
 
     def fetch_other_building_data(self):
@@ -280,7 +309,10 @@ class PropertyHTML:
         :return: None
         """
         url = f"{BASE_URL}/otherbuilding/getotherbuildingdata?geocode={self.geocode}&year={self.year}"
-        response = requests.get(url)
+        start = time.time()
+        response = caller.get(url)
+        elapsed = round(time.time() - start, 2)
+        self.time_taken_other_building = elapsed
         self.other_building_data = response.content.decode('utf-8')
 
     def fetch_commercial_data(self):
@@ -290,7 +322,10 @@ class PropertyHTML:
         :return: None
         """
         url = f"{BASE_URL}/commercial/getcommercialdata?geocode={self.geocode}&year={self.year}"
-        response = requests.get(url)
+        start = time.time()
+        response = caller.get(url)
+        elapsed = round(time.time() - start, 2)
+        self.time_taken_commercial = elapsed
         self.commercial_data = response.content.decode('utf-8')
 
     def fetch_agricultural_data(self):
@@ -300,7 +335,10 @@ class PropertyHTML:
         :return: None
         """
         url = f"{BASE_URL}/agforest/getagforestdata?geocode={self.geocode}&year={self.year}"
-        response = requests.get(url)
+        start = time.time()
+        response = caller.get(url)
+        elapsed = round(time.time() - start, 2)
+        self.time_taken_agricultural = elapsed
         self.agricultural_data = response.content.decode('utf-8')
 
     def fetch_all_data(self):
