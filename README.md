@@ -1,3 +1,71 @@
+
+### API Response Time Analysis
+
+#### 1. Introduction
+This notebook aims to analyze and visualize the response times of various API calls. By understanding the performance characteristics of these APIs, we can identify bottlenecks, optimize response times, and ensure efficient service for end-users.
+
+#### 2. Data Acquisition
+The data for this analysis comes from a JSON file that contains property objects. Each object has:
+- A `Geocode` for identifying the property.
+- Several keys representing different API calls.
+- Values associated with these keys which are the response times for those API calls.
+
+To load the data into the notebook:
+```python
+import json
+
+# Load the JSON data from the file
+with open("path_to_file", "r") as file:
+    data = json.load(file)
+```
+
+#### 3. Data Exploration and Visualization
+
+After loading the data, the notebook takes the following steps to visualize it:
+
+##### 3.1 Box Plot
+The box plot provides a visual summary of the distribution of response times for each API call. It helps in identifying the central tendency, variability, and presence of outliers in the data.
+
+```python
+import matplotlib.pyplot as plt
+
+# Create a box plot
+plt.boxplot(data)
+```
+
+##### 3.2 Histograms
+Histograms offer insights into the frequency distribution of response times for each API call. They are essential for understanding the shape and spread of each distribution.
+
+```python
+data.hist()
+```
+
+##### 3.3 Density Plots
+Density plots give a smoothed representation of the distribution of response times for each API call. They help in identifying where the bulk of response times are concentrated.
+
+```python
+data.plot(kind='density')
+```
+
+##### 3.4 Violin Plots
+Violin plots combine aspects of box plots and density plots. They offer a deeper insight into the distribution of response times for each API call.
+
+```python
+import seaborn as sns
+
+sns.violinplot(data=data)
+```
+
+##### 3.5 Cumulative Distribution Function (CDF) Plots
+CDF plots show the probability that a response time will be less than or equal to a particular value. They are useful for understanding the percentage of calls that finish within a certain timeframe.
+
+```python
+data.hist(cumulative=True, density=1)
+```
+
+#### 4. Conclusion
+Through the visualizations in this notebook, we gain a comprehensive understanding of the performance characteristics of various API calls. These insights are valuable for optimizing the performance of the APIs and ensuring a smooth user experience.
+
 ___
 
 # Montana Cadastral Data Extractor

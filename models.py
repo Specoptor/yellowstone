@@ -1,5 +1,7 @@
 from bs4 import BeautifulSoup
 
+from data_extractor import PropertyHTML
+
 
 def extract_key_value_pairs(soup_objects):
     data = {}
@@ -216,6 +218,19 @@ class Property:
             columns = row.find_all('td')
             land_info = extract_key_value_pairs(columns)
             self.market_land_details.append(land_info)
+
+    def populate_from_property_html_object(self, obj: PropertyHTML):
+        """
+        Populates the Property object with data from a PropertyHTML object.
+
+        :param obj: PropertyHTML object containing all the data.
+        """
+        self.update_summary_data(obj.summary_data)
+        self.update_commercial_data(obj.commercial_data)
+        self.update_market_land_data(obj.market_land_data)
+        self.update_other_building_data(obj.other_building_data)
+        self.update_appraisal_history(obj.appraisal_data)
+        self.update_owner_details(obj.owner_data)
 
     def json(self):
         """
