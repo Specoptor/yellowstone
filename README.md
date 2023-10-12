@@ -1,71 +1,3 @@
-
-### API Response Time Analysis
-
-#### 1. Introduction
-This notebook aims to analyze and visualize the response times of various API calls. By understanding the performance characteristics of these APIs, we can identify bottlenecks, optimize response times, and ensure efficient service for end-users.
-
-#### 2. Data Acquisition
-The data for this analysis comes from a JSON file that contains property objects. Each object has:
-- A `Geocode` for identifying the property.
-- Several keys representing different API calls.
-- Values associated with these keys which are the response times for those API calls.
-
-To load the data into the notebook:
-```python
-import json
-
-# Load the JSON data from the file
-with open("path_to_file", "r") as file:
-    data = json.load(file)
-```
-
-#### 3. Data Exploration and Visualization
-
-After loading the data, the notebook takes the following steps to visualize it:
-
-##### 3.1 Box Plot
-The box plot provides a visual summary of the distribution of response times for each API call. It helps in identifying the central tendency, variability, and presence of outliers in the data.
-
-```python
-import matplotlib.pyplot as plt
-
-# Create a box plot
-plt.boxplot(data)
-```
-
-##### 3.2 Histograms
-Histograms offer insights into the frequency distribution of response times for each API call. They are essential for understanding the shape and spread of each distribution.
-
-```python
-data.hist()
-```
-
-##### 3.3 Density Plots
-Density plots give a smoothed representation of the distribution of response times for each API call. They help in identifying where the bulk of response times are concentrated.
-
-```python
-data.plot(kind='density')
-```
-
-##### 3.4 Violin Plots
-Violin plots combine aspects of box plots and density plots. They offer a deeper insight into the distribution of response times for each API call.
-
-```python
-import seaborn as sns
-
-sns.violinplot(data=data)
-```
-
-##### 3.5 Cumulative Distribution Function (CDF) Plots
-CDF plots show the probability that a response time will be less than or equal to a particular value. They are useful for understanding the percentage of calls that finish within a certain timeframe.
-
-```python
-data.hist(cumulative=True, density=1)
-```
-
-#### 4. Conclusion
-Through the visualizations in this notebook, we gain a comprehensive understanding of the performance characteristics of various API calls. These insights are valuable for optimizing the performance of the APIs and ensuring a smooth user experience.
-
 ___
 
 # Montana Cadastral Data Extractor
@@ -118,7 +50,7 @@ and organize.
 
 ---
 
-## Classes in data_extractor.py
+### Classes in data_extractor.py
 
 - **CadastralAPI**: Main API handler to communicate with the Montana Cadastral API.
 - **County**: Represents a county and its associated subdivisions.
@@ -128,7 +60,7 @@ and organize.
 
 ___
 
-## Directory Structure by calling populate_directory_structure()
+### Directory Structure by calling populate_directory_structure()
 
 The data is stored in a nested directory structure:
 
@@ -173,14 +105,14 @@ populate_directory_for_subdivision(county_id="03", county_name="YELLOWSTONE", su
 
 ___
 
-## Error Handling
+### Error Handling
 
 The project includes basic error handling for API responses and directory operations. Need for robust error handling is
 required.
 
 ___
 
-## Dependencies
+### Dependencies
 
 - Python 3.x
 - `requests`: For making API calls.
@@ -204,7 +136,7 @@ ___
 
 ---
 
-## Property Class in models.py
+## Using the Property Class - models.py
 
 The `Property` class is designed to represent a real estate property and extract relevant attributes from multiple types
 of HTML formatted strings.
@@ -230,7 +162,7 @@ string for data extraction:
 ```python
 property_obj = Property(html_string=initial_html_data)
 ```
-
+---
 ### Updating Attributes
 
 After initialization, you can dynamically update the property attributes by feeding it different types of HTML formatted
@@ -244,7 +176,7 @@ property_obj.update_other_building_data(other_building_html_data)
 property_obj.update_market_land_data(market_land_html_data)
 property_obj.update_appraisal_history(appraisal_html_data)
 ```
-
+---
 ### Accessing Attributes
 
 Once the data has been parsed, you can access the property's attributes:
@@ -253,9 +185,9 @@ Once the data has been parsed, you can access the property's attributes:
 print(property_obj.geocode)
 print(property_obj.legal_description)
 print(property_obj.owners)
-# ... and so on for other attributes.
+...
 ```
-
+---
 ## Attributes:
 
 The class extracts and stores the following attributes:
@@ -274,10 +206,6 @@ The class extracts and stores the following attributes:
 - `building_details`: Details of the commercial buildings on the property.
 - `other_building_details`: Details of other buildings or yard improvements.
 - `market_land_details`: Details of the market land.
-
-## Dependencies:
-
-- **BeautifulSoup4**: The class uses BeautifulSoup for parsing HTML data.
 
 ---
 
@@ -320,3 +248,77 @@ to fetch data from the API by passing the geocode of property and the year for w
 11. **Dwelling Data**: Retrieves dwelling data for a property.
 
 ---
+### API Response Time Analysis `api response time.ipynb`
+
+#### 1. Introduction
+This `api response time.ipynb` aims to analyze and visualize the response times of various API calls. By understanding the performance characteristics of these APIs, we can identify bottlenecks and optimize response times.
+
+#### 2. Data Acquisition
+The data for this analysis is pulled in real time by making calls to two kinds of APIs in the order listed below:
+
+- Get the list of all properties in a subdivision 
+  - Parameters:
+    - `county_id`
+    - `county_name`
+    - `subdivision_name`
+
+
+- Get the Property details by calling 6 different apis given two parameters:
+
+  - Types of APIs:
+    - `summary`
+    - `owner`
+    - `agriculture`
+    - `commercial`
+    - `other_building`
+    - `market_land`
+    - `appraisal`
+    - `dwelling`
+    
+  - Parameters:
+    - `geocode`
+    - `year`
+
+#### 3. Data Exploration and Visualization
+
+After loading the data, the notebook takes the following steps to visualize it:
+
+##### 3.1 Box Plot
+The box plot provides a visual summary of the distribution of response times for each API call. It helps in identifying the central tendency, variability, and presence of outliers in the data.
+
+```python
+import matplotlib.pyplot as plt
+
+# Create a box plot
+plt.boxplot(data)
+```
+
+##### 3.2 Histograms
+Histograms offer insights into the frequency distribution of response times for each API call. They are essential for understanding the shape and spread of each distribution.
+
+```python
+data.hist()
+```
+
+##### 3.3 Density Plots
+Density plots give a smoothed representation of the distribution of response times for each API call. They help in identifying where the bulk of response times are concentrated.
+
+```python
+data.plot(kind='density')
+```
+
+##### 3.4 Violin Plots
+Violin plots combine aspects of box plots and density plots. They offer a deeper insight into the distribution of response times for each API call.
+
+```python
+import seaborn as sns
+
+sns.violinplot(data=data)
+```
+
+##### 3.5 Cumulative Distribution Function (CDF) Plots
+CDF plots show the probability that a response time will be less than or equal to a particular value. They are useful for understanding the percentage of calls that finish within a certain timeframe.
+
+```python
+data.hist(cumulative=True, density=1)
+```
