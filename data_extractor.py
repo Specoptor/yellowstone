@@ -9,6 +9,7 @@ import json
 from bs4 import BeautifulSoup
 
 from api_caller import ApiCaller
+from utils import decode_html
 
 caller = ApiCaller()
 
@@ -213,7 +214,7 @@ class PropertyHTML:
         response = caller.get(url)
         elapsed = round(time.time() - start, 2)
         self.time_taken_summary = elapsed
-        self.summary_data = response.content.decode('utf-8')
+        self.summary_data = decode_html(response.content.decode('utf-8'))
 
     def fetch_owner_data(self) -> None:
         """
@@ -226,7 +227,7 @@ class PropertyHTML:
         response = caller.get(url)
         elapsed = round(time.time() - start, 2)
         self.time_taken_owner = elapsed
-        self.owner_data = response.content.decode('utf-8')
+        self.owner_data = decode_html(response.content.decode('utf-8'))
 
     def fetch_appraisal_data(self) -> None:
         """
@@ -239,7 +240,7 @@ class PropertyHTML:
         response = caller.get(url)
         elapsed = round(time.time() - start, 2)
         self.time_taken_appraisal = elapsed
-        self.appraisal_data = response.content.decode('utf-8')
+        self.appraisal_data = decode_html(response.content.decode('utf-8'))
 
     def fetch_market_land_data(self) -> None:
         """
@@ -252,7 +253,7 @@ class PropertyHTML:
         response = caller.get(url)
         elapsed = round(time.time() - start, 2)
         self.time_taken_market_land = elapsed
-        self.market_land_data = response.content.decode('utf-8')
+        self.market_land_data = decode_html(response.content.decode('utf-8'))
 
     def fetch_dwelling_data(self) -> None:
         """
@@ -265,7 +266,7 @@ class PropertyHTML:
         response = caller.get(url)
         elapsed = round(time.time() - start, 2)
         self.time_taken_dwelling = elapsed
-        self.dwelling_data = response.content.decode('utf-8')
+        self.dwelling_data = decode_html(response.content.decode('utf-8'))
 
     def fetch_other_building_data(self) -> None:
         """
@@ -278,7 +279,7 @@ class PropertyHTML:
         response = caller.get(url)
         elapsed = round(time.time() - start, 2)
         self.time_taken_other_building = elapsed
-        self.other_building_data = response.content.decode('utf-8')
+        self.other_building_data = decode_html(response.content.decode('utf-8'))
 
     def fetch_commercial_data(self) -> None:
         """
@@ -291,7 +292,7 @@ class PropertyHTML:
         response = caller.get(url)
         elapsed = round(time.time() - start, 2)
         self.time_taken_commercial = elapsed
-        self.commercial_data = response.content.decode('utf-8')
+        self.commercial_data = decode_html(response.content.decode('utf-8'))
 
     def fetch_agricultural_data(self) -> None:
         """
@@ -304,7 +305,7 @@ class PropertyHTML:
         response = caller.get(url)
         elapsed = round(time.time() - start, 2)
         self.time_taken_agricultural = elapsed
-        self.agricultural_data = response.content.decode('utf-8')
+        self.agricultural_data = decode_html(response.content.decode('utf-8'))
 
     def fetch_all_data(self) -> None:
         """
