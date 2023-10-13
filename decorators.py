@@ -1,7 +1,7 @@
 import time
 
 
-def timer(func):
+def timer(func: callable) -> callable(object):
     """Decorator for timing api calls.
 
     Assumes the second argument in *args is the endpoint for printing purposes.
@@ -9,7 +9,14 @@ def timer(func):
     :return: wrapper function
     """
 
-    def wrapper(*args, **kwargs):
+    def wrapper(*args: list | set | tuple, **kwargs: dict) -> callable(object):
+        """
+            A decorator that measures and prints the execution time of a function.
+            :param func: The function to be decorated.
+            :type func: callable
+            :return: The decorated function.
+            :rtype: callable
+            """
         start_time = time.time()
         result = func(*args, **kwargs)
         end_time = time.time()
