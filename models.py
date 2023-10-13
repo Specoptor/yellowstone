@@ -3,21 +3,25 @@ from typing import List
 from data_extractor import PropertyHTML
 
 
-def extract_key_value_pairs(soup_objects: List[BeautifulSoup]) -> dict[str,str]:
-    '''This function is designed to extract key-value pairs from a list of BeautifulSoup objects. It looks for specific patterns within the objects to identify key-value pairs.
-        :params: soup_objects - a list of BeautifulSoup objects.
-        :return: A dictionary containing key-value pairs extracted from the input object'''
+def extract_key_value_pairs(soup_objects: List[BeautifulSoup]) -> dict[str, str]:
+    """
+    This function is designed to extract key-value pairs from a list of BeautifulSoup objects. It looks for specific patterns within the objects to identify key-value pairs.
+
+    :param soup_objects: A list of BeautifulSoup objects.
+    :type soup_objects: List[BeautifulSoup]
+    :return: A dictionary containing key-value pairs extracted from the input object.
+    :rtype: dict[str, str]
+    """
     data = {}
     for obj in soup_objects:
         if len(obj.contents) == 2 and \
-                obj.contents[0].attrs['class'] == ['key'] and \
-                obj.contents[1].attrs['class'] == ['value']:
+                isinstance(obj.contents[0], BeautifulSoup) and isinstance(obj.contents[1], BeautifulSoup) and \
+                obj.contents[0].attrs.get('class', []) == ['key'] and \
+                obj.contents[1].attrs.get('class', []) == ['value']:
             key = obj.find('span', class_='key').text.strip(':')
             value = obj.find('span', class_='value').text
             data[key] = value
     return data
-
-
 def decode_html(encoded_string: str) -> str:
     """
     decode the raw html string received from http response to a clean html string.
