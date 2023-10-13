@@ -3,7 +3,7 @@ from requests.exceptions import Timeout, ConnectionError
 from decorators import timer
 
 class ApiCaller:
-    def __init__(self, timeout=250):
+    def __init__(self, timeout: int = 250) -> None:
         """
         Initializes an ApiCaller object.
 
@@ -13,7 +13,7 @@ class ApiCaller:
         self.timeout = timeout
 
     @timer
-    def get(self, url, params=None):
+    def get(self, url: str) -> requests.Response | None:
         """
         Sends a GET request to the given URL and returns the response object.
 
@@ -22,7 +22,7 @@ class ApiCaller:
         :return: The response object.
         """
         try:
-            response = self.session.get(url, params=params, timeout=self.timeout)
+            response = self.session.get(url, timeout=self.timeout)
             response.raise_for_status()  # This will raise an HTTPError if the HTTP request returned an unsuccessful status code
             return response
         except Timeout:
