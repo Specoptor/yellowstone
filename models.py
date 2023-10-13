@@ -1,7 +1,7 @@
 from bs4 import BeautifulSoup
 
 
-def extract_key_value_pairs(soup_objects):
+def extract_key_value_pairs(soup_objects: list[BeautifulSoup]) -> dict[str, str]:
     data = {}
     for obj in soup_objects:
         if len(obj.contents) == 2 and \
@@ -13,7 +13,7 @@ def extract_key_value_pairs(soup_objects):
     return data
 
 
-def decode_html(encoded_string):
+def decode_html(encoded_string: str) -> str:
     """
     decode the raw html string received from http response to a clean html string.
     :param encoded_string: raw html string
@@ -33,7 +33,7 @@ class Property:
     Represents a property with various attributes extracted from multiple types of HTML formatted strings.
     """
 
-    def __init__(self, html_string=None):
+    def __init__(self, html_string: str = None) -> None:
         """
         Initializes a Property object with optional initial parsing.
 
@@ -61,7 +61,7 @@ class Property:
         if self.soup:
             self._initial_extraction()
 
-    def _initial_extraction(self):
+    def _initial_extraction(self) -> None:
         """Conducts initial data extraction if an HTML string is provided during object initialization."""
         self.geocode = self._extract_data_by_key("Geocode:")
         self.legal_description = self._extract_data_by_search_term("Legal Description:")
@@ -72,7 +72,7 @@ class Property:
         self.subdivision = self._extract_data_by_key("Subdivision:")
         self.owners = self._extract_owner_details()
 
-    def update_html(self, html_string):
+    def update_html(self, html_string: str) -> None:
         """
         Updates the BeautifulSoup object with a new HTML string.
 
@@ -81,7 +81,7 @@ class Property:
         clean_html = decode_html(html_string)
         self.soup = BeautifulSoup(clean_html, 'html.parser')
 
-    def _extract_data_by_key(self, key):
+    def _extract_data_by_key(self, key: str) -> str | None:
         """
         Extracts data from the HTML content based on a specific key.
 
@@ -97,7 +97,7 @@ class Property:
                 return value_span.text.strip()
         return None
 
-    def _extract_data_by_search_term(self, term):
+    def _extract_data_by_search_term(self, term: str) -> str | None:
         """
         Extracts data from the HTML content based on a search term.
 
@@ -113,7 +113,7 @@ class Property:
                 return value_span.text.strip()
         return None
 
-    def _extract_owner_details(self):
+    def _extract_owner_details(self) -> list[dict[str, str]]:
         """
         Extracts owner details from the HTML content.
 
@@ -135,7 +135,7 @@ class Property:
                 owner_details.append(owner_info)
         return owner_details
 
-    def update_owner_details(self, html_string):
+    def update_owner_details(self, html_string) -> None:
         """
         Parses owner details from the provided HTML string and updates the relevant attributes.
 
@@ -144,7 +144,7 @@ class Property:
         self.update_html(html_string)
         self.owners = self._extract_owner_details()
 
-    def update_appraisal_history(self, html_string):
+    def update_appraisal_history(self, html_string: str) -> None:
         """
         Parses appraisal history from the provided HTML string and updates the relevant attributes.
 
@@ -160,7 +160,7 @@ class Property:
             total_value_2022 = int(rows[1].find_all('td')[3].text)
             self.yoY_difference = total_value_2023 - total_value_2022
 
-    def update_summary_data(self, html_string):
+    def update_summary_data(self, html_string: str) -> None:
         """
         Parses summary data from the provided HTML string and updates the relevant attributes.
 
@@ -175,7 +175,7 @@ class Property:
         self.sub_category = self._extract_data_by_key("Subcategory:")
         self.subdivision = self._extract_data_by_key("Subdivision:")
 
-    def update_commercial_data(self, html_string):
+    def update_commercial_data(self, html_string: str) -> None:
         """
         Parses commercial building details from the provided HTML string and updates the relevant attributes.
 
@@ -189,7 +189,7 @@ class Property:
             building_info = extract_key_value_pairs(columns)
             self.building_details.append(building_info)
 
-    def update_other_building_data(self, html_string):
+    def update_other_building_data(self, html_string: str) -> None:
         """
         Parses other building or yard improvement details from the provided HTML string and updates the relevant attributes.
 
@@ -203,7 +203,7 @@ class Property:
             other_building_info = extract_key_value_pairs(columns)
             self.other_building_details.append(other_building_info)
 
-    def update_market_land_data(self, html_string):
+    def update_market_land_data(self, html_string: str) -> None:
         """
         Parses market land data from the provided HTML string and updates the relevant attributes.
 
@@ -217,7 +217,7 @@ class Property:
             land_info = extract_key_value_pairs(columns)
             self.market_land_details.append(land_info)
 
-    def json(self):
+    def json(self) -> dict[str, str | int | list[dict[str, str]] | None]:
         """
         Returns a dictionary representation of the Property object. It excludes the soup attribute.
 
