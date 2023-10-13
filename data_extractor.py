@@ -21,7 +21,7 @@ class CadastralAPI:
     """
 
     @staticmethod
-    def get_counties():
+    def get_counties() -> list[dict]:
         """
         Fetch the list of all counties.
 
@@ -32,7 +32,7 @@ class CadastralAPI:
         return response.json()
 
     @staticmethod
-    def get_subdivisions(county_id):
+    def get_subdivisions(county_id: str) -> list[dict]:
         """
         Fetch subdivisions for a given county.
 
@@ -44,7 +44,7 @@ class CadastralAPI:
         return response.json()
 
     @staticmethod
-    def get_properties_by_subdivision(subdivision_name, county_id):
+    def get_properties_by_subdivision(subdivision_name: str, county_id: str) -> list[dict[str, str] | None]:
         """
         Fetch properties for a given subdivision and county.
 
@@ -53,7 +53,7 @@ class CadastralAPI:
         :return: List of properties for the specified subdivision and county.
         """
 
-        def clean_json_string(data_str):
+        def clean_json_string(data_str: str) -> str:
             """
             Replace invalid escape sequences in a JSON string.
 
@@ -82,7 +82,7 @@ class CadastralAPI:
 
 
 class Subdivision:
-    def __init__(self, name, county_name, county_id):
+    def __init__(self, name: str, county_name: str, county_id: str) -> None:
         """
         Initializes a Subdivision object.
 
@@ -95,7 +95,7 @@ class Subdivision:
         self.county_id = county_id
         self.properties_html = ""
 
-    def fetch_properties(self):
+    def fetch_properties(self) -> None:
         """
         Fetch property data HTML for the subdivision.
 
@@ -105,7 +105,7 @@ class Subdivision:
         # assuming that the properties_data variable is the HTML formatted string
         self.properties_html = properties_data
 
-    def save_properties(self):
+    def save_properties(self) -> None:
         """
         Save property data HTML for the subdivision to a JSON file.
 
@@ -118,7 +118,7 @@ class Subdivision:
         filepath = os.path.join(directory, "properties_list.json")
         save_to_json({"properties_html": self.properties_html}, filepath)
 
-    def extract_and_save_properties(self, county_directory):
+    def extract_and_save_properties(self, county_directory: str) -> None:
         """
         Extract property details from the HTML data and create directories using their geocodes.
 
@@ -139,7 +139,7 @@ class Subdivision:
 
 
 class County:
-    def __init__(self, id, name):
+    def __init__(self, id: str, name: str) -> None:
         """
         Initializes a County object.
 
@@ -150,7 +150,7 @@ class County:
         self.name = name
         self.subdivisions = []
 
-    def fetch_subdivisions(self):
+    def fetch_subdivisions(self) -> None:
         """
         Fetch and store subdivisions for the county.
 
@@ -161,7 +161,7 @@ class County:
             if subdiv['Subdiv']:
                 self.subdivisions.append(Subdivision(subdiv['Subdiv'], self.name, self.id))
 
-    def save_subdivisions(self):
+    def save_subdivisions(self) -> None:
         """
         Save list of subdivisions for the county at its root directory.
 
@@ -176,7 +176,7 @@ class County:
 
 
 class PropertyHTML:
-    def __init__(self, geocode, year=2023):
+    def __init__(self, geocode: str, year: int = 2023) -> None:
         """
         Initializes a Property object.
 
@@ -202,7 +202,7 @@ class PropertyHTML:
         self.time_taken_commercial = None
         self.time_taken_agricultural = None
 
-    def fetch_summary_data(self):
+    def fetch_summary_data(self) -> None:
         """
         Fetch and store summary data for the property.
 
@@ -215,7 +215,7 @@ class PropertyHTML:
         self.time_taken_summary = elapsed
         self.summary_data = response.content.decode('utf-8')
 
-    def fetch_owner_data(self):
+    def fetch_owner_data(self) -> None:
         """
         Fetch and store owner data for the property.
 
@@ -228,7 +228,7 @@ class PropertyHTML:
         self.time_taken_owner = elapsed
         self.owner_data = response.content.decode('utf-8')
 
-    def fetch_appraisal_data(self):
+    def fetch_appraisal_data(self) -> None:
         """
         Fetch and store appraisal data for the property.
 
@@ -241,7 +241,7 @@ class PropertyHTML:
         self.time_taken_appraisal = elapsed
         self.appraisal_data = response.content.decode('utf-8')
 
-    def fetch_market_land_data(self):
+    def fetch_market_land_data(self) -> None:
         """
         Fetch and store market land data for the property.
 
@@ -254,7 +254,7 @@ class PropertyHTML:
         self.time_taken_market_land = elapsed
         self.market_land_data = response.content.decode('utf-8')
 
-    def fetch_dwelling_data(self):
+    def fetch_dwelling_data(self) -> None:
         """
         Fetch and store dwelling data for the property.
 
@@ -267,7 +267,7 @@ class PropertyHTML:
         self.time_taken_dwelling = elapsed
         self.dwelling_data = response.content.decode('utf-8')
 
-    def fetch_other_building_data(self):
+    def fetch_other_building_data(self) -> None:
         """
         Fetch and store other building data for the property.
 
@@ -280,7 +280,7 @@ class PropertyHTML:
         self.time_taken_other_building = elapsed
         self.other_building_data = response.content.decode('utf-8')
 
-    def fetch_commercial_data(self):
+    def fetch_commercial_data(self) -> None:
         """
         Fetch and store commercial data for the property.
 
@@ -293,7 +293,7 @@ class PropertyHTML:
         self.time_taken_commercial = elapsed
         self.commercial_data = response.content.decode('utf-8')
 
-    def fetch_agricultural_data(self):
+    def fetch_agricultural_data(self) -> None:
         """
         Fetch and store agricultural data for the property.
 
@@ -306,7 +306,7 @@ class PropertyHTML:
         self.time_taken_agricultural = elapsed
         self.agricultural_data = response.content.decode('utf-8')
 
-    def fetch_all_data(self):
+    def fetch_all_data(self) -> None:
         """
         Fetch and store all data types for the property.
 
@@ -321,7 +321,7 @@ class PropertyHTML:
         self.fetch_commercial_data()
         self.fetch_agricultural_data()
 
-    def time_taken(self):
+    def time_taken(self) -> dict[str, float]:
         """
         Return the time taken for each API call.
         :return: a dictionary of time taken for each API call
@@ -338,7 +338,7 @@ class PropertyHTML:
                 }
 
 
-def populate_directory_structure():
+def populate_directory_structure() -> None:
     """
     Populate the directory structure:
     1. Fetch all counties and save them.
@@ -348,7 +348,7 @@ def populate_directory_structure():
     :return: None
     """
 
-    def get_existing_subdivisions(county_directory):
+    def get_existing_subdivisions(county_directory: str) -> list[str] | list[dict[str, str] | None]:
         """
         Get a list of existing subdivisions for a given county from the subdivision_list.json file.
 
@@ -386,7 +386,7 @@ def populate_directory_structure():
             subdivision.extract_and_save_properties(county_directory)
 
 
-def populate_directory_for_county(county_id, county_name):
+def populate_directory_for_county(county_id: str, county_name: str) -> None:
     """
     Populate directories for a specific county.
 
@@ -405,7 +405,7 @@ def populate_directory_for_county(county_id, county_name):
         subdivision.extract_and_save_properties(county_directory)
 
 
-def populate_directory_for_subdivision(county_id, county_name, subdivision_name):
+def populate_directory_for_subdivision(county_id: str, county_name: str, subdivision_name: str) -> None:
     """
     Populate directories for a specific subdivision within a given county.
 
@@ -422,7 +422,7 @@ def populate_directory_for_subdivision(county_id, county_name, subdivision_name)
     subdivision.extract_and_save_properties(county_directory)
 
 
-def save_to_json(data, filepath):
+def save_to_json(data: list[dict] | dict, filepath: str) -> None:
     """
     Utility function to save data as JSON to the specified filepath.
 
@@ -434,7 +434,7 @@ def save_to_json(data, filepath):
 
 
 class PropertyExtractor:
-    def __init__(self, property_html):
+    def __init__(self, property_html: str) -> None:
         """
         Initializes a PropertyExtractor object.
 
@@ -442,7 +442,7 @@ class PropertyExtractor:
         """
         self.soup = BeautifulSoup(property_html, 'html.parser')
 
-    def extract_properties(self):
+    def extract_properties(self) -> list[dict[str, str]]:
         """
         Extracts properties details from the HTML using anchors in the string.
 
