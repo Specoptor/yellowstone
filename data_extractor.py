@@ -114,8 +114,7 @@ class Subdivision:
             os.makedirs(directory)
 
         filepath = os.path.join(directory, "properties_list.json")
-        save_to_json({"properties_html": self.properties_html}, filepath)
-
+        save_to_json(self.properties_html, filepath)
     def extract_and_save_properties(self, county_directory: str) -> None:
         """
         Extract property details from the HTML data and create directories using their geocodes in their County.
@@ -171,7 +170,8 @@ class County:
             os.makedirs(directory)
 
         filepath = os.path.join(directory, "subdivision_list.json")
-        save_to_json([subdiv.name for subdiv in self.subdivisions], filepath)
+        subdivision_names = [subdiv.name for subdiv in self.subdivisions]
+        save_to_json(json.dumps({"subdivisions": subdivision_names}), filepath)
 
 
 class PropertyHTML:
