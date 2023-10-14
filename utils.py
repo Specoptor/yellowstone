@@ -1,20 +1,25 @@
-from bs4 import BeautifulSoup
+import re
+from bs4 import Tag
 
 
-def extract_key_value_pairs(soup_objects: list[BeautifulSoup]) -> dict[str, str]:
+def extract_key_value_pairs(table: Tag) -> dict:
     """
-    Extracts key-value pairs from a list of BeautifulSoup objects.
-    :param soup_objects:
-    :return:
+    Extract key-value pairs from the provided table Tag.
+
+    :param table: The table BeautifulSoup Tag.
+    :return: A dictionary with the extracted key-value pairs.
     """
     data = {}
-    for obj in soup_objects:
-        if len(obj.contents) == 2 and \
-                obj.contents[0].attrs['class'] == ['key'] and \
-                obj.contents[1].attrs['class'] == ['value']:
-            key = obj.find('span', class_='key').text.strip(':')
-            value = obj.find('span', class_='value').text
-            data[key] = value
+    rows = table.find_all('tr')
+    for row in rows:
+        key_elements = row.find_all(class_='key')
+        value_elements = row.find_all(class_='value')
+
+        for key_element, value_element in zip(key_elements, value_elements):
+            key_text = key_element.get_text().strip()
+            value_text = value_element.get_text().strip()
+            data[key_text] = value_text
+
     return data
 
 
@@ -31,3 +36,13 @@ def decode_html(encoded_string: str) -> str:
     clean_html = decoded_string.replace("\r", "").replace("\n", "").replace("\t", "")
 
     return clean_html
+
+
+def is_empty_response(html_string: str) -> bool:
+    """
+    Check if the HTML string indicates an empty response.
+
+    :param html_string: The input HTML string.
+    :return: True if it's an empty response, False otherwise.
+    """
+    return bool(re.search(r"No .+ info exists for this parcel", html_string))
