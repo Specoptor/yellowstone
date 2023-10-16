@@ -1,11 +1,8 @@
 import time
-from typing import List, Optional, Dict
 import os
 import re
 import json
-
 from bs4 import BeautifulSoup
-
 from api_caller import ApiCaller
 
 caller = ApiCaller()
@@ -19,7 +16,7 @@ class CadastralAPI:
     """
 
     @staticmethod
-    def get_counties() -> List[Dict[str, str]]:
+    def get_counties() -> list[dict[str, str]]:
         """
         Fetch the list of all counties.
 
@@ -30,7 +27,7 @@ class CadastralAPI:
         return response.json()
 
     @staticmethod
-    def get_subdivisions(county_id: str) -> List[Dict[str, str]]:
+    def get_subdivisions(county_id: str) -> list[dict[str, str]]:
         """
         Fetch subdivisions for a given county.
 
@@ -42,7 +39,7 @@ class CadastralAPI:
         return response.json()
 
     @staticmethod
-    def get_properties_by_subdivision(subdivision_name: str, county_id: str) -> List[Optional[Dict[str, str]]]:
+    def get_properties_by_subdivision(subdivision_name: str, county_id: str) -> list[[dict[str, str]]]:
         """
         Fetch properties for a given subdivision and county.
 
@@ -320,7 +317,7 @@ class PropertyHTML:
         self.fetch_commercial_data()
         self.fetch_agricultural_data()
 
-    def time_taken(self) -> Dict[str, float]:
+    def time_taken(self) -> dict[str, float]:
         """
         Return the time taken for each API call.
         :return: a dictionary of time taken for each API call
@@ -348,7 +345,7 @@ def populate_directory_structure() -> None:
     :return: None
     """
 
-    def get_existing_subdivisions(county_directory: str) -> List[str] | list[Dict[str, str] | None]:
+    def get_existing_subdivisions(county_directory: str) -> list[str] | list[dict[str, str] | None]:
         """
         Get a list of existing subdivisions for a given county from the subdivision_list.json file.
 
@@ -442,7 +439,7 @@ class PropertyExtractor:
         """
         self.soup = BeautifulSoup(property_html, 'html.parser')
 
-    def extract_properties(self) -> List[Dict[str, str]]:
+    def extract_properties(self) -> list[dict[str, str]]:
         """
         Extracts properties details from the HTML using anchors in the string.
 
