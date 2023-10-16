@@ -1,9 +1,8 @@
 from bs4 import BeautifulSoup
-from typing import List
 from data_extractor import PropertyHTML
 
 
-def extract_key_value_pairs(soup_objects: List[BeautifulSoup]) -> dict[str, str]:
+def extract_key_value_pairs(soup_objects: list[BeautifulSoup]) -> dict[str, str]:
     """
     This function is designed to extract key-value pairs from a list of BeautifulSoup objects. It looks for specific patterns within the objects to identify key-value pairs.
 
@@ -125,7 +124,7 @@ class Property:
                 return value_span.text.strip()
         return None
 
-    def _extract_owner_details(self) -> List[dict[str,str]]:
+    def _extract_owner_details(self) -> list[dict[str,str]]:
         """
         Extracts owner details from the HTML content.
 
