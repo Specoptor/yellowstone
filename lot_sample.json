@@ -1,0 +1,98 @@
+{
+  "initial": {
+    "Owner Name": "ARNHOLT DAVID & CYNTHIA",
+    "Geocode": "25-0337-17-2-02-15-0000",
+    "Address": "No Data",
+    "Legal Description": "YELLOWSTONE MNTN CLUB GOLF COURSE PH 1, S17, T07 S, R03 E, Lot 739, ACRES 0.84, PLAT 4/560"
+  },
+  "summary": {
+    "Property Category:": "RP",
+    "Subcategory:": "Residential Property",
+    "Geocode:": "25-0337-17-2-02-15-0000",
+    "Assessment Code:": "0028220038",
+    "Primary Owner:": "",
+    "COS Parcel:": "PO BOX 11086",
+    "Certificate of Survey:": "",
+    "Subdivision:": "YELLOWSTONE MNTN CLUB GOLF COURSE PH 1",
+    "Last Modified:": "10/4/2023 2:34:56 PM",
+    "Neighborhood:": "225.018.E",
+    "Property Type:": "VAC_R - Vacant Land - Rural",
+    "Living Units:": "0",
+    "Levy District:": "25-3545-52OUT",
+    "Zoning:": "",
+    "Ownership %:": "100",
+    "General:": "0",
+    "Limited:": "0",
+    "Topography:": "",
+    "Fronting:": "",
+    "Utilities:": "",
+    "Parking Type:": "",
+    "Access:": "",
+    "Parking Quantity:": "",
+    "Location:": "",
+    "Parking Proximity:": "",
+    "Grazing": "0.000",
+    "Fallow": "0.000",
+    "Irrigated": "0.000",
+    "Continuous Crop": "0.000",
+    "Wild Hay": "0.000",
+    "Farmsite": "0.000",
+    "ROW": "0.000",
+    "NonQual Land": "0.000",
+    "Total Ag Land": "0.000",
+    "Total Forest Land": "0.000",
+    "Total Market Land": "0.840"
+  },
+  "owner": {
+    "Default Information:": "ARNHOLT DAVID & CYNTHIA",
+    "": "PO BOX 11086",
+    "Ownership %:": "100",
+    "Primary Owner:": "\"Yes\"",
+    "Interest Type:": "Fee Simple",
+    "Last Modified:": "1/6/2023 8:06:26 AM"
+  },
+  "appraisal": [
+    {
+      "Tax Year": 2023,
+      "Land Value": 7143564.0,
+      "Building Value": 0.0,
+      "Total Value": 7143564.0,
+      "Method": "COST",
+      "Land Value YoY": 4225269.0,
+      "Building Value YoY": 0.0,
+      "Total Value YoY": 4225269.0
+    },
+    {
+      "Tax Year": 2022,
+      "Land Value": 2918295.0,
+      "Building Value": 0.0,
+      "Total Value": 2918295.0,
+      "Method": "COST",
+      "Land Value YoY": 0.0,
+      "Building Value YoY": 0.0,
+      "Total Value YoY": 0.0
+    },
+    {
+      "Tax Year": 2021,
+      "Land Value": 2918295.0,
+      "Building Value": 0.0,
+      "Total Value": 2918295.0,
+      "Method": "COST"
+    }
+  ],
+  "dwelling": {},
+  "other_building": [
+    {}
+  ],
+  "commercial": {},
+  "market_land": {
+    "Method:": "Acre",
+    "Type:": "Primary Site",
+    "Width:": "",
+    "Depth:": "",
+    "Square Feet:": "00",
+    "Acres:": "0.84",
+    "Class Code:": "2101",
+    "Value:": "7143564"
+  }
+}
