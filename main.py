@@ -1,7 +1,10 @@
 import json
 
+import pandas as pd
+
 from models import Property
 from data_extractor import PropertyExtractor, CadastralAPI, County
+from utils import flatten_json_to_df
 
 county_list = CadastralAPI.get_counties()  # list of all counties in Montana4
 
@@ -22,5 +25,16 @@ for subdivision in yellow_stone_subdivisions:
         prop = Property(init_property_data=init_data)
         complete_property_data.append(prop.data)
 
-with open('yellowstone_club_properties.json', 'w') as f:
-    json.dump(complete_property_data, f, indent=4)
+# The path where the flattened JSON will be saved
+output_file_path = 'yellowstone_club_properties.json'
+
+# Flattening the JSON data and converting to a list of dictionaries
+flattened_data = [flatten_json_to_df(property_json)
+                  for i, property_json in enumerate(complete_property_data)]
+
+# Writing the list of dictionaries to a JSON file
+with open(output_file_path, 'w') as f:
+    json.dump(flattened_data, f, indent=4)
+
+df = pd.DataFrame(flattened_data)
+df.to_csv('yellowstone_club_properties.csv', index=False)
